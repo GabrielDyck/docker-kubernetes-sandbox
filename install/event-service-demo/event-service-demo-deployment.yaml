@@ -19,9 +19,9 @@ spec:
           image: gabrieldyck/go-stack-test:2
           env:
             - name: HTTP_PORT
-              value: ":9292"
+              value: ":9290"
           ports:
-            - containerPort: 9292
+            - containerPort: 9290
           resources:
             requests:
               memory: "500Mi"
@@ -32,14 +32,14 @@ spec:
           livenessProbe:
             httpGet:
               path: /health-check
-              port: 9292
+              port: 9290
             initialDelaySeconds: 5
             timeoutSeconds: 2
             periodSeconds: 3
           readinessProbe:
             httpGet:
               path: /health-check
-              port: 9292
+              port: 9290
             initialDelaySeconds: 5
             timeoutSeconds: 2
             periodSeconds: 3

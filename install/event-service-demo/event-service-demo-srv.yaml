@@ -8,9 +8,9 @@ metadata:
   namespace: default
 spec:
   ports:
-    - port: 9292
+    - port: 9290
       protocol: TCP
-      targetPort: 9292
+      targetPort: 9290
   selector:
     service: event-service-demo
   type: NodePort

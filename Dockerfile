@@ -10,6 +10,3 @@ RUN go build main.go
 EXPOSE 9290
 
 CMD ["./main"]
-
-
-

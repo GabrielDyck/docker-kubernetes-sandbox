@@ -1,52 +1,16 @@
-#!/bin/bash
 
-start=$SECONDS
 
-SAM_IMAGE_VERSION=$1
-SAM_TEST_OK_VERSION=0.0.10
-EVENT_SERVICE_DEMO_VERSION=0.0.21
-
-if [ -z $SAM_IMAGE_VERSION ]
-  then
-    echo "set sam image"
-    exit 1
-fi
-
-echo "creating e2e-cluster..."
+echo "Creating stack-test-cluster..."
 kind create cluster --name stack-test-cluster --wait 1m --config kind/kind-cluster.yaml
 
-echo "loading sam image $SAM_IMAGE_VERSION to cluster"
+echo "loading image to cluster"
 kind load docker-image "gabrieldyck/go-stack-test:2" --name stack-test-cluster
-
-echo "setting up service accound"
-kubectl apply --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")" -f rback/stack-test-rback.yaml
 
 echo "event service demo..."
 kubectl apply -R -f ./install/event-service-demo --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")"
 
-
-
-
-###################################################################################################################################
-
-
-
-
 echo "waiting for event service demo to be ready"
 kubectl wait --for=condition=available --timeout=10s --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")" deploy/event-service-demo-deployment
 
-echo "event service sam..."
-kubectl create configmap sam-config --from-file=../pkg/config/support/integration/ --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")"
-kubectl apply -R -f ./install/sam --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")"
-
-echo "waiting for sam to be ready"
-kubectl wait --for=condition=available --timeout=10s --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")" deploy/sam-deployment
-
-echo "running tests..."
-go test ./...
-
-echo "kind delete cluster --name=stack-test-cluster"
-kind delete cluster --name="stack-test-cluster"
-
-end=$SECONDS
-echo "duration: $((end-start)) seconds."
+#Only for test purpose
+#kubectl port-forward  event-service-demo-deployment-76598fdc8-5zk6h 9290:9290
