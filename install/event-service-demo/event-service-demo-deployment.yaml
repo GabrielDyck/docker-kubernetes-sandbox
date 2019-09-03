@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-service-demo-deployment
+  labels:
+    service: event-service-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: event-service-demo
+  template:
+    metadata:
+      labels:
+        service: event-service-demo
+    spec:
+      containers:
+        - name: event-service-demo
+          image: gabrieldyck/go-stack-test:2
+          env:
+            - name: HTTP_PORT
+              value: ":9292"
+          ports:
+            - containerPort: 9292
+          resources:
+            requests:
+              memory: "500Mi"
+              cpu: "1"
+            limits:
+              memory: "500Mi"
+              cpu: "1"
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 9292
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: 9292
+            initialDelaySeconds: 5
+            timeoutSeconds: 2
+            periodSeconds: 3
