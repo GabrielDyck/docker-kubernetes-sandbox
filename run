@@ -1,5 +1,3 @@
-
-
 echo "Creating stack-test-cluster..."
 kind create cluster --name stack-test-cluster --wait 1m --config kind/kind-cluster.yaml
 
@@ -14,3 +12,6 @@ kubectl wait --for=condition=available --timeout=10s --kubeconfig "$(kind get ku
 
 #Only for test purpose
 #kubectl port-forward  event-service-demo-deployment-76598fdc8-5zk6h 9290:9290
+
+echo "kind delete cluster --name=stack-test-cluster"
+kind delete cluster --name="stack-test-cluster"

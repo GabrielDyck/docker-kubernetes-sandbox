@@ -21,6 +21,8 @@ func main() {
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", port), nil))
 }
 
+
+
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		http.NotFound(w, r)
@@ -31,6 +33,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
 	}
 }
+
 
 func healthCheck(w http.ResponseWriter, r *http.Request){
 	if r.URL.Path != "/health-check" {
