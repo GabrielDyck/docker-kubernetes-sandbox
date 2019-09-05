@@ -1,5 +1,8 @@
 # docker steps - v1
-### Como buildear una imagen y garantizarnos que esta corriendo?
+## Como buildear una imagen y garantizarnos que esta corriendo?
+
+### Build de la imagen
+
 Nos situamos en la carpeta donde se encuentra nuestro Dockerfile
 y corremos el siguiente comando:
 ```bash
@@ -11,7 +14,7 @@ Podremos observar si la imagen se genero correctamente con el comando
 ```bash
 docker image ls
 ```
-## Test de la imagen
+### Test de la imagen
 
 Una vez generada la imagen, vamos a testear que funcione correctamente.
 Primero vamos a generar y ejecutar un container con la imagen generada:
