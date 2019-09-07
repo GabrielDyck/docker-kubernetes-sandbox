@@ -2,7 +2,7 @@ echo "Creating stack-test-cluster..."
 kind create cluster --name stack-test-cluster --wait 1m --config kind/kind-cluster.yaml
 
 echo "loading image to cluster"
-kind load docker-image "gabrieldyck/go-stack-test:2" --name stack-test-cluster
+kind load docker-image "docker-kubernetes-sandbox:v1" --name stack-test-cluster
 
 echo "event service demo..."
 kubectl apply -R -f ./kubernetes-config/event-service-demo --kubeconfig "$(kind get kubeconfig-path --name="stack-test-cluster")"

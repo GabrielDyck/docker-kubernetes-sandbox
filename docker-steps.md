@@ -91,3 +91,7 @@ docker container rm docker-kubernetes-image-test
 ```
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
+
+
+### Bibliografia
+https://docs.docker.com/

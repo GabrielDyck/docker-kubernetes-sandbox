@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: event-service-demo
-          image: gabrieldyck/go-stack-test:2
+          image: docker-kubernetes-sandbox:v1
           env:
             - name: HTTP_PORT
               value: ":9290"
