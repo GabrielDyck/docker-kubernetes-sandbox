@@ -91,7 +91,7 @@ kubectl apply -R -f ./kubernetes-config/event-service-demo --kubeconfig "$(kind 
 Este comando apply, tomara nuestras configuraciones y las creara o actualizara(en caso de existir un cambio) en nuestro cluster, actualizando el estado de los objetos de kubernetes definidos en esos archivos. 
 Veamos los casos:
 1.  *event-service-demo-srv.yaml *: Declara un objeto del tipo Service de kubernetes que expone el puerto 9290 y lo rutea al puerto 9290 de los servicios con el selector *event-service-demo*
-2. *event-service-demo-deployment.yaml*: Declara un objeto del tipo Deployment de kubernetes que declara su matchLabel(con esto matchea el servicio para redirigirle trafico) *event-service-demo* y quiza lo mas interesante, es que luego declara el estado de los containers de ese deployment( imagen que utilizara el container, que puerto expone, los recursos de memoria y cpu, health-check).
+2. *event-service-demo-deployment.yaml*: Declara un objeto del tipo Deployment de kubernetes que declara su matchLabel(con esto matchea el servicio para redirigirle trafico) *event-service-demo* y dentro de template, declara como es la configuracion de los los pods, quiza lo mas interesante, es que declara el estado de los containers de ese deployment( imagen que utilizara el container, que puerto expone, los recursos de memoria y cpu, health-check).
 
 ```
 
