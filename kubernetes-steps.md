@@ -3,14 +3,12 @@
 
 ### Herramientas
 1. *kind*
-	Herramienta para ejecutar clusters de kubernetes
 
 	Guia de instalacion de kind:
 	[https://github.com/kubernetes-sigs/kind](https://github.com/kubernetes-sigs/kind)
 
 
 2. *kubectl*
-	Herramienta para ejecutar comandos en el cluster de kubernetes
 
 	Guia de instalacion de kubectl:
 	[https://kubernetes.io/docs/tasks/tools/install-kubectl/#before-you-begin](https://kubernetes.io/docs/tasks/tools/install-kubectl/#before-you-begin)
